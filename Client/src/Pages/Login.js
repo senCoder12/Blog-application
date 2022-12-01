@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { toast, ToastContainer } from "react-toastify";
 import { login } from '../Redux/Features/authSlice';
 import GoogleLogin from 'react-google-login';
-
+// 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
 let initState = {
     email: "",
     password: ""
@@ -29,8 +29,12 @@ function Login(props) {
         const { value, name } = e.target;
         setFormValue({ ...formValue, [name]: value });
     };
-    const googleSuccess = () => { }
-    const googleFailure = () => { }
+    const googleSuccess = (resp) => {
+        console.log(resp);
+     }
+    const googleFailure = (err) => {
+        console.log(err);
+     }
 
     return (
         <div style={{
@@ -87,7 +91,7 @@ function Login(props) {
                         </div>
                     </MDBValidation>
                     <GoogleLogin
-                        clientId="....."
+                        clientId="513261793782-4vfrgu0ibp0uq6ikihnh09qllvc5bq2r.apps.googleusercontent.com"
                         render={(renderProps) => (
                             <MDBBtn style={{ width: "100%", marginTop: "15px" }} color="danger"
                                 onClick={renderProps.onClick}

@@ -27,7 +27,7 @@ export const signup =  async (req, res) => {
             expiresIn: "1hr"
         })
         res.status(201).json({
-            "message": "User signup successfully",
+            result : newUser,
             token
         }) 
     } catch (err) {
@@ -53,16 +53,17 @@ export const signin =  async (req, res) => {
                 })
                 res.status(200).send({
                     token,
+                    result: user,
                     "message": "Login successful"
                 })
             }else {
                 res.status(404).send({
-                    error: "Wrong credential"
+                    "message": "Invalid user"
                 })
             }
         }else {
             res.status(404).send({
-                error: "Wrong credential"
+                "message": "Wrong credential"
             })
         }
     } catch (err) {
