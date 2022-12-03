@@ -1,12 +1,13 @@
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import Allroutes from './Components/Allroutes';
+import Header from './Components/Header';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <h2>Hello React</h2>
+        <Header/>
       </BrowserRouter>
       <Allroutes/>
     </div>

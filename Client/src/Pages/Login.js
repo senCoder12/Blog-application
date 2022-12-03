@@ -33,7 +33,7 @@ function Login(props) {
         console.log(resp);
      }
     const googleFailure = (err) => {
-        console.log(err);
+        console.log(err,"google failure");
      }
 
     return (
