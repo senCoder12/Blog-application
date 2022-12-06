@@ -32,7 +32,7 @@ export default function AddEditTour() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if(title && description && tags) {
-            const updatedTourData = {...tourData,name: user.result[0].name,creator: user.result[0]._id}
+            const updatedTourData = {...tourData,name: user.result[0].name}
             dispatch(createTour({updatedTourData,navigate,toast}))
             handleClear();
         }
