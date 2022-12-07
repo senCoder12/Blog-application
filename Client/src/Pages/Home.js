@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import {MDBCol,MDBRow,MDBContainer,MDBTypography} from "mdb-react-ui-kit"
-import {Link} from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { getTours } from '../Redux/Features/tourSlice';
+import CardTour from '../Components/cardTour';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ export default function Home() {
         <MDBCol>
           <MDBContainer>
             <MDBRow className='row-cols-1 row-cols-md-3 g-3'>
-                {tours && tours.map((item)=> <>Tour data</>)}
+                {tours && tours.map((item)=> <CardTour key={item.name} {...item}/>)}
             </MDBRow>
           </MDBContainer>
         </MDBCol>
