@@ -3,6 +3,7 @@ import {MDBCol,MDBRow,MDBContainer,MDBTypography} from "mdb-react-ui-kit"
 import { useDispatch, useSelector } from 'react-redux'
 import { getTours } from '../Redux/Features/tourSlice';
 import CardTour from '../Components/cardTour';
+import Spinner from '../Components/Spinner';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ export default function Home() {
   },[])
 
   if(loading) {
-    return <>loading....</>
+    return <Spinner/>
   }
   return (
     <div style={{margin: "auto",padding: "15px", maxWidth: "1000px", alignContent: "center"}}>

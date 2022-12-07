@@ -4,14 +4,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getTour } from '../Redux/Features/tourSlice';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
+import Spinner from '../Components/Spinner';
 
 export default function SingleTour() {
     const dispatch = useDispatch();
     const {tour} = useSelector((state)=>({...state.tour}));
     const {id} = useParams();
     useEffect(()=> {
-        if(id) dispatch(getTour(id));
+        dispatch(getTour(id));
     },[])
+
 
   return (
     <MDBContainer>
@@ -35,7 +37,7 @@ export default function SingleTour() {
                 <br />
                 <MDBCardText className='text-start mt-2'>
                     <MDBIcon
-                        style={{float: "left", margin: "5px"}}
+                        style={{float: "left", margin: "5px" , marginTop: "13px" , marginRight: "10px"}}
                         far
                         icon='calendar-alt'
                         size='lg'

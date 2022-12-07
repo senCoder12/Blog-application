@@ -5,6 +5,8 @@ import Login from '../Pages/Login'
 import Register from '../Pages/Register'
 import AddEditTour from '../Pages/addEditTour.js'
 import SingleTour from '../Pages/SingleTour'
+import Dashboard from '../Pages/Dashboard'
+import Privateroute from './Privateroute'
 function Allroutes() {
   return (
     <BrowserRouter>
@@ -12,8 +14,10 @@ function Allroutes() {
             <Route path ="/" element={<Home/>}/>
             <Route path ="/login" element={<Login/>}/>
             <Route path ="/register" element={<Register/>}/>
-            <Route path ="/addTour" element={<AddEditTour/>}/>
-            <Route path ="/addTour/:id" element={<SingleTour/>}/>
+            <Route path ="/addTour" element={<Privateroute><AddEditTour/></Privateroute>}/>
+            <Route path ="/editTour/:id" element={<Privateroute><AddEditTour/></Privateroute>}/>
+            <Route path ="/tour/:id" element={<SingleTour/>}/>
+            <Route path ="/dashboard" element={<Privateroute><Dashboard/></Privateroute>}/>
         </Routes>
     </BrowserRouter>
   )
