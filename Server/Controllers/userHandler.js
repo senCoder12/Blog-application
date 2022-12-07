@@ -24,7 +24,7 @@ export const signup =  async (req, res) => {
             email,
             id: newUser._id
         },process.env.JWT_SECRET_KEY,{
-            expiresIn: "1hr"
+            // expiresIn: "1hr"
         })
         res.status(201).json({
             result : newUser,
