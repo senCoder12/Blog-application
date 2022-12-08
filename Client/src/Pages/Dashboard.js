@@ -45,8 +45,8 @@ export default function Dashboard() {
         <hr style={{maxWidth: "570px"}}/>
         {
             userTours && userTours.map((item)=>(
-                <MDBCardGroup>
-                    <MDBCard style={{maxWidth: "600px"}} key={item._id} className="mt-2">
+                <MDBCardGroup key={item._id}>
+                    <MDBCard style={{maxWidth: "600px"}} className="mt-2">
                         <MDBRow className='g-0'>
                             <MDBCol md="4">
                                 <MDBCardImage

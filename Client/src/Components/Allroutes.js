@@ -7,6 +7,7 @@ import AddEditTour from '../Pages/addEditTour.js'
 import SingleTour from '../Pages/SingleTour'
 import Dashboard from '../Pages/Dashboard'
 import Privateroute from './Privateroute'
+import NotFoundPage from '../Pages/NotFoundPage'
 function Allroutes() {
   return (
     <BrowserRouter>
@@ -18,6 +19,7 @@ function Allroutes() {
             <Route path ="/editTour/:id" element={<Privateroute><AddEditTour/></Privateroute>}/>
             <Route path ="/tour/:id" element={<SingleTour/>}/>
             <Route path ="/dashboard" element={<Privateroute><Dashboard/></Privateroute>}/>
+            <Route path= "*" element= {<NotFoundPage/>}/>
         </Routes>
     </BrowserRouter>
   )

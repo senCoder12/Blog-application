@@ -39,10 +39,11 @@ export const deleteTour = createAsyncThunk("tour/deleteTour", async({id,toast},{
     }
 })
 
-export const updateTour = createAsyncThunk("tour/updateTour", async({id,updatedTourData,toast},{rejectWithValue})=>{
+export const updateTour = createAsyncThunk("tour/updateTour", async({id,updatedTourData,toast,navigate},{rejectWithValue})=>{
     try {
-        const response = await api.updateTour(id);
-        toast.success("Tour deleted successfully");
+        const response = await api.updateTour(updatedTourData,id);
+        toast.success("Tour updated successfully");
+        navigate("/");
         return response.data;
     } catch (error) {
         return rejectWithValue(error.response.data);
