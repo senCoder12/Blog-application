@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
-import { MDBCard, MDBCardFooter, MDBCardBody, MDBValidation, MDBBtn, MDBSpinner, MDBAccordionItem,MDBValidationItem, MDBContainer, MDBCardImage, MDBCardText, MDBIcon } from "mdb-react-ui-kit"
+import { MDBCard, MDBCardFooter, MDBCardBody, MDBContainer, MDBCardImage, MDBCardText, MDBIcon } from "mdb-react-ui-kit"
 import { useDispatch, useSelector } from 'react-redux'
 import { getTour } from '../Redux/Features/tourSlice';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
-import Spinner from '../Components/Spinner';
 
 export default function SingleTour() {
     const dispatch = useDispatch();

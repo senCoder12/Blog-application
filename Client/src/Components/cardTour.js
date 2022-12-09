@@ -1,5 +1,5 @@
 import React from 'react'
-import {MDBCard,MDBCardBody,MDBCardTitle,MDBCardImage,MDBCardGroup, MDBCardText} from "mdb-react-ui-kit" 
+import {MDBCard,MDBCardBody,MDBCardImage,MDBCardGroup, MDBCardText} from "mdb-react-ui-kit" 
 import {Link} from "react-router-dom"
 
 
