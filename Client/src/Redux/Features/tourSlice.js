@@ -50,6 +50,24 @@ export const updateTour = createAsyncThunk("tour/updateTour", async({id,updatedT
     }
 })
 
+export const getToursBySearch = createAsyncThunk("tour/getToursBySearch", async(searchQuery,{rejectWithValue})=>{
+    try {
+        const response = await api.getToursBySearch(searchQuery);
+        return response.data;
+    } catch (error) {
+        return rejectWithValue(error.response.data);
+    }
+})
+
+export const getToursByTag = createAsyncThunk("tour/getToursByTag", async(tag,{rejectWithValue})=>{
+    try {
+        const response = await api.getToursByTag(tag);
+        return response.data;
+    } catch (error) {
+        return rejectWithValue(error.response.data);
+    }
+})
+
 export const getToursByUser = createAsyncThunk("tour/getToursByUser", async(userId,{rejectWithValue})=>{
     try {
         const response = await api.getToursByUser(userId);
@@ -65,6 +83,7 @@ const tourSlice = createSlice({
         tour: {},
         tours: [],
         userTours: [],
+        tagTours: [],
         error: "",
         loading: false
     },
@@ -113,7 +132,6 @@ const tourSlice = createSlice({
             state.loading = false;
             state.error = action.payload.error;
         },
-        
         [deleteTour.pending] : (state,action)=> {
             state.loading = true;
         },
@@ -126,6 +144,28 @@ const tourSlice = createSlice({
             }
         },
         [deleteTour.rejected] : (state,action)=> {
+            state.loading = false;
+            state.error = action.payload.error;
+        },
+        [getToursBySearch.pending] : (state,action)=> {
+            state.loading = true;
+        },
+        [getToursBySearch.fulfilled] : (state,action)=> {
+            state.loading = false;
+            state.tours = action.payload;
+        },
+        [getToursBySearch.rejected] : (state,action)=> {
+            state.loading = false;
+            state.error = action.payload.error;
+        },
+        [getToursByTag.pending] : (state,action)=> {
+            state.loading = true;
+        },
+        [getToursByTag.fulfilled] : (state,action)=> {
+            state.loading = false;
+            state.tagTours = action.payload;
+        },
+        [getToursByTag.rejected] : (state,action)=> {
             state.loading = false;
             state.error = action.payload.error;
         }

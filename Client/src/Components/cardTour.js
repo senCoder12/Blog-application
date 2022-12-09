@@ -20,7 +20,9 @@ export default function CardTour({imageFile,description,title,tags,_id,name}) {
             style={{maxWidth: "100%",height: "100%"}}
             />
             <div className='top-left'>{name}</div>
-            <span className='text-start tag-card'>{tags.map((item)=> `#${item} `)}</span>
+            <span className='text-start tag-card'>{tags.map((tag)=> 
+                <Link to={`/tour/tag/${tag}`}>#{tag}</Link>
+            )}</span>
             <MDBCardBody>
                 <MDBCardText className='text-start'>{title}</MDBCardText>
                 <MDBCardText className='text-start'>

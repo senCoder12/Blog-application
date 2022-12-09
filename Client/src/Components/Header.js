@@ -10,17 +10,31 @@ import {
     MDBNavbarToggler,
     MDBNavbarBrand
 } from "mdb-react-ui-kit"
-import { useSelector,useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { setLogout } from '../Redux/Features/authSlice';
+import { getTours, getToursBySearch } from '../Redux/Features/tourSlice';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
     const { user } = useSelector(state => ({ ...state.auth }))
     const [show, setShow] = useState(false);
+    const [search,setSearch] = useState("");
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const handleLogout = ()=> {
+    const handleLogout = () => {
         localStorage.clear("profile");
         dispatch(setLogout());
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(search) {
+            dispatch(getToursBySearch(search));
+            navigate(`/tours/search?searchQuery=${search}`)
+        } else {
+            dispatch(getTours());
+            navigate("/");
+        }
     }
 
     return (
@@ -35,7 +49,7 @@ function Header() {
                 <MDBCollapse show={show} navbar>
                     <MDBNavbarNav right fullWidth={false} className="mb-2 mb-lg-0">
                         {user?.result[0]?._id && (
-                            <h5 style={{marginTop: "16px", marginRight:"17px"}}>Logged in as: {user.result[0].name}</h5>
+                            <h5 style={{ marginTop: "27px", marginRight: "17px" }}>Logged in as: {user.result[0].name}</h5>
                         )}
                         <MDBNavbarItem>
                             <MDBNavbarLink href='/'>
@@ -70,6 +84,18 @@ function Header() {
                             </MDBNavbarItem>
                         )}
                     </MDBNavbarNav>
+                    <form className="d-flex input-group w-auto" onSubmit={handleSubmit}>
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Search Tour"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+                        <div style={{ marginTop: "5px", marginLeft: "5px" }}>
+                            <MDBIcon fas icon="search" />
+                        </div>
+                    </form>
                 </MDBCollapse>
             </MDBContainer>
         </MDBNavbar>

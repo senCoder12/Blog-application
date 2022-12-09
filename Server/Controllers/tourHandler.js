@@ -68,3 +68,34 @@ export const updateTour = async(req, res) => {
         return res.status(404).json({message: "Something went wrong"});  
     }
 }
+
+export const getTourBySearch = async(req,res) => {
+    const {searchQuery} = req.query;
+    try {
+        const title = new RegExp(searchQuery,"i");
+        const tours = await tourModel.find({title})
+        return res.status(200).json(tours);
+    } catch (error) {
+        return res.status(500).json({message: "Something went wrong"});
+    }
+}
+
+export const getToursByTag = async(req,res) => {
+    const {tag} = req.params;
+    try {
+        const tours = await tourModel.find({tags: {$in: tag}})
+        return res.status(200).json(tours);
+    } catch (error) {
+        return res.status(500).json({message: "Something went wrong"});
+    }
+}
+
+export const getRelatedTours = async(req,res) => {
+    const tags = req.body;
+    try {
+        const tours = await tourModel.find({tags: {$in: tags}})
+        return res.status(200).json(tours);
+    } catch (error) {
+        return res.status(500).json({message: "Something went wrong"});
+    }
+}

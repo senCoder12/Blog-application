@@ -8,16 +8,19 @@ import SingleTour from '../Pages/SingleTour'
 import Dashboard from '../Pages/Dashboard'
 import Privateroute from './Privateroute'
 import NotFoundPage from '../Pages/NotFoundPage'
+import TagTours from '../Pages/TagTours'
 function Allroutes() {
   return (
     <BrowserRouter>
         <Routes>
             <Route path ="/" element={<Home/>}/>
+            <Route path ="/tours/search" element={<Home/>}/>
             <Route path ="/login" element={<Login/>}/>
             <Route path ="/register" element={<Register/>}/>
             <Route path ="/addTour" element={<Privateroute><AddEditTour/></Privateroute>}/>
             <Route path ="/editTour/:id" element={<Privateroute><AddEditTour/></Privateroute>}/>
             <Route path ="/tour/:id" element={<SingleTour/>}/>
+            <Route path ="/tour/tag/:tag" element={<TagTours/>}/>
             <Route path ="/dashboard" element={<Privateroute><Dashboard/></Privateroute>}/>
             <Route path= "*" element= {<NotFoundPage/>}/>
         </Routes>
