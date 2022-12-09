@@ -15,7 +15,7 @@ export default function Dashboard() {
     
     useEffect(()=> {
         if(userId) dispatch(getToursByUser(userId));
-    },[userId])
+    },[])
 
     const excerpt = (str) => {
         if(str.length > 40) {
@@ -41,7 +41,7 @@ export default function Dashboard() {
             alingContent: "center",
         }}
     >
-        <h4 className='text-center'>Dashboard: {user?.result[0]?.name}</h4>
+        <h3 className='text-center'>Dashboard: {user?.result[0]?.name}</h3>
         <hr style={{maxWidth: "570px"}}/>
         {
             userTours && userTours.map((item)=>(

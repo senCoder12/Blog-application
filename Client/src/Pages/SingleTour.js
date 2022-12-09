@@ -1,17 +1,23 @@
 import React, { useEffect } from 'react'
 import { MDBCard, MDBCardBody, MDBContainer, MDBCardImage, MDBCardText, MDBIcon } from "mdb-react-ui-kit"
 import { useDispatch, useSelector } from 'react-redux'
-import { getTour } from '../Redux/Features/tourSlice';
+import { getRelatedTours, getTour } from '../Redux/Features/tourSlice';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
+import RelatedTours from '../Components/RelatedTours';
 
 export default function SingleTour() {
     const dispatch = useDispatch();
-    const {tour} = useSelector((state)=>({...state.tour}));
+    const {tour,relatedTours} = useSelector((state)=>({...state.tour}));
     const {id} = useParams();
+    const tags = tour?.tags
+
+    useEffect(() =>{
+        dispatch(getRelatedTours(tags));
+    },[tags])
     useEffect(()=> {
         dispatch(getTour(id));
-    },[])
+    },[id])
 
 
   return (
@@ -50,6 +56,7 @@ export default function SingleTour() {
                 </MDBCardText>
             </MDBCardBody>
         </MDBCard>
+        <RelatedTours relatedTours={relatedTours} tourId={id}/>
     </MDBContainer>
   )
 }

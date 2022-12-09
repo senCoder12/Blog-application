@@ -22,3 +22,4 @@ export const updateTour = (updatedData,id)  => API.patch(`/tour/${id}`,updatedDa
 export const getToursByUser = (userId) => API.get(`/tour/userTours/${userId}`);
 export const getToursBySearch = (searchQuery) => API.get(`/tour/search?searchQuery=${searchQuery}`);
 export const getToursByTag = (tag) => API.get(`/tour/tag/${tag}`);
+export const getRelatedTours = (tags) => API.post(`/tour/realedTours`,tags);

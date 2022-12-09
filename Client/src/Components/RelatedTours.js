@@ -33,7 +33,7 @@ const RelatedTours = ({ relatedTours, tourId }) => {
                     </Link>
                     <span className="text-start tag-card">
                       {item.tags.map((tag) => (
-                        <Link to={`/tours/tag/${tag}`}> #{tag}</Link>
+                        <Link to={`/tour/tag/${tag}`}> #{tag}</Link>
                       ))}
                     </span>
                     <MDBCardBody>

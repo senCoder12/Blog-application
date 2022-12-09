@@ -14,6 +14,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setLogout } from '../Redux/Features/authSlice';
 import { getTours, getToursBySearch } from '../Redux/Features/tourSlice';
 import { useNavigate } from 'react-router-dom';
+import decode from "jwt-decode";
+import LoadingToRedirect from './LoadingToRedirect';
 
 function Header() {
     const { user } = useSelector(state => ({ ...state.auth }))
@@ -21,6 +23,14 @@ function Header() {
     const [search,setSearch] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const token = user?.token;
+
+    if(token) {
+        const decodeToken = decode(token);
+        if(decodeToken.exp * 1000 < new Date().getTime() ) {
+            dispatch(setLogout());
+        }
+    }
 
     const handleLogout = () => {
         localStorage.clear("profile");
