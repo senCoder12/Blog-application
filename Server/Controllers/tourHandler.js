@@ -92,10 +92,12 @@ export const getToursByTag = async(req,res) => {
 
 export const getRelatedTours = async(req,res) => {
     const tags = req.body;
+    console.log(tags);
     try {
         const tours = await tourModel.find({tags: {$in: tags}})
         return res.status(200).json(tours);
     } catch (error) {
-        return res.status(500).json({message: "Something went wrong"});
+        console.log(error);
+        return res.status(404).json({message: "Something went wrong"});
     }
 }
