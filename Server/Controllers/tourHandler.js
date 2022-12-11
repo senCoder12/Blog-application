@@ -14,8 +14,17 @@ export const createTour = async(req, res) => {
 
 export const getTours = async(req, res) => {
     try {
-        const tours = await tourModel.find();
-        res.status(200).json(tours);
+        const {page} = req.query;
+        const limit = 6;
+        const total = await tourModel.countDocuments({});
+        const starIndex = (Number(page)-1 ) * limit;
+        const tours = await tourModel.find().limit(limit).skip(starIndex);
+        res.json({
+            data: tours,
+            currentPage: Number(page),
+            totalTours: total,
+            noOfPages: Math.ceil(total / limit)
+        })
     } catch (error) {
         res.status(404).json({message: "Something went wrong"})
     }
@@ -32,7 +41,7 @@ export const getTour = async(req, res) => {
 }
 export const getToursByUser = async(req, res) => {
     const {id} = req.params;
-    if(!mongoose.Types.ObjectId(id)) {
+    if(!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({message: "User does not exist"});
     }
     const userTours = await tourModel.find({creator: id});
@@ -42,7 +51,7 @@ export const getToursByUser = async(req, res) => {
 export const deleteTour = async(req, res) => {
     try {
         const {id} = req.params;
-        if(!mongoose.Types.ObjectId(id)) {
+        if(!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(404).json({message: "User does not exist"});
         }
         await tourModel.findByIdAndRemove(id);
@@ -56,7 +65,7 @@ export const updateTour = async(req, res) => {
     try {
         const {id} = req.params;
         const {title,description,tags,imageFile,creator} = req.body;
-        if(!mongoose.Types.ObjectId(id)) {
+        if(!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(404).json({message: "User does not exist"});
         }
         const updatedData = {
@@ -97,7 +106,30 @@ export const getRelatedTours = async(req,res) => {
         const tours = await tourModel.find({tags: {$in: tags}})
         return res.status(200).json(tours);
     } catch (error) {
-        console.log(error);
+        return res.status(404).json({message: "Something went wrong"});
+    }
+}
+
+export const likeTour = async(req, res) => {
+    const {id} = req.params;
+    try {
+        if(!req.userId) return res.status(404).json({message: `User is not autherised`});
+        if(!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).json({message: "User does not exist"});
+        }
+        const tour = await tourModel.findById(id);
+        const index = tour.likes.findIndex(id => id=== String(req.userId));
+
+        if(index == -1) {
+            tour.likes.push(req.userId);
+        } else {
+            tour.likes.splice(index, 1);
+        }
+        
+        const updatedTour = await tourModel.findByIdAndUpdate(id, tour, {new: true});
+
+        res.status(200).json(updatedTour);
+    } catch (error) {
         return res.status(404).json({message: "Something went wrong"});
     }
 }

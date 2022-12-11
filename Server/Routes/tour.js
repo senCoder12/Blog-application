@@ -1,5 +1,5 @@
 import express from "express";
-import { getTour, createTour, getTours, getToursByUser, updateTour, deleteTour, getTourBySearch, getToursByTag, getRelatedTours } from "../Controllers/tourHandler.js";
+import { getTour, createTour, getTours, getToursByUser, updateTour, deleteTour, getTourBySearch, getToursByTag, getRelatedTours, likeTour } from "../Controllers/tourHandler.js";
 import { auth } from "../Middlewares/auth.js";
 
 const tourRouter = express.Router();
@@ -13,5 +13,6 @@ tourRouter.get('/:id', getTour);
 tourRouter.delete('/:id', deleteTour);
 tourRouter.patch('/:id', updateTour);
 tourRouter.get('/userTours/:id', getToursByUser);
+tourRouter.patch('/like/:id',auth, likeTour);
 
 export default tourRouter;
