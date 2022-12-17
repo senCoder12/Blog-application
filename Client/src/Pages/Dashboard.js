@@ -41,8 +41,19 @@ export default function Dashboard() {
             alingContent: "center",
         }}
     >
-        <h3 className='text-center'>Dashboard: {user?.result[0]?.name}</h3>
-        <hr style={{maxWidth: "570px"}}/>
+        {
+            userTours.length == 0 && (
+                <h3>No tour available with the user: {user?.result[0]?.name}</h3>
+            ) 
+        }
+        {
+            userTours.length > 0 && (
+                <>
+                    <h3 className='text-center'>Dashboard: {user?.result[0]?.name}</h3>
+                    <hr style={{maxWidth: "570px"}}/>
+                </>
+            )
+        }
         {
             userTours && userTours.map((item)=>(
                 <MDBCardGroup key={item._id}>
