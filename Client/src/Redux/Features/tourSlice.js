@@ -228,7 +228,7 @@ const tourSlice = createSlice({
             state.loading = false;
             const {arg: {_id}} = action.meta;
             if(_id) {
-                state.tours = state.tours.filter((item)=> item._id == _id ? action.payload : item);
+                state.tours = state.tours.map((item)=> item._id == _id ? action.payload : item);
             }
         }, 
         [likeTour.rejected] : (state,action)=> {

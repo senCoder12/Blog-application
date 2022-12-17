@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { MDBCard, MDBCardBody, MDBCardImage, MDBCardGroup, MDBCardText, MDBIcon, MDBTooltip, MDBBtn } from "mdb-react-ui-kit"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { likeTour } from '../Redux/Features/tourSlice'
 
 
-export default function CardTour({ imageFile, description, title, tags, _id, name } ,likes) {
+export default function CardTour({ imageFile, description, title, tags, _id, name, likes }) {
     const { user } = useSelector((state) => ({ ...state.auth }))
-    const userId = user?.result?._id || user?.result?.googleId;
+    const userId = user?.result[0]?._id || user?.result[0]?.googleId;
     const dispatch = useDispatch();
     const excerpt = (str) => {
         if (str.length > 45) {
@@ -15,10 +15,9 @@ export default function CardTour({ imageFile, description, title, tags, _id, nam
         }
         return str;
     }
-    console.log(likes);
     const Likes = () => {
         if (likes.length > 0) {
-            return likes.find((like) => like === userId) ? (
+            return likes.find((like) => like == userId) ? (
                 <>
                     <MDBIcon fas icon="thumbs-up" />
                     &nbsp;
@@ -40,6 +39,12 @@ export default function CardTour({ imageFile, description, title, tags, _id, nam
                 </>
             );
         }
+        return (
+            <>
+              <MDBIcon far icon="thumbs-up" />
+              &nbsp;Like
+            </>
+          );
     }
 
     const handleLike = () => {
