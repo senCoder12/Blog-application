@@ -83,7 +83,11 @@ export const getTourBySearch = async(req,res) => {
     try {
         const title = new RegExp(searchQuery,"i");
         const tours = await tourModel.find({title})
-        return res.status(200).json(tours);
+        const total = tours.length;
+        const limit = 6;
+        return res.status(200).json({data:tours,
+            noOfPages: Math.ceil(total / limit)
+        });
     } catch (error) {
         return res.status(500).json({message: "Something went wrong"});
     }
