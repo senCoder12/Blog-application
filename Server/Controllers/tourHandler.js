@@ -26,7 +26,7 @@ export const getTours = async(req, res) => {
             noOfPages: Math.ceil(total / limit)
         })
     } catch (error) {
-        res.status(404).json({message: "Something went wrong"})
+        res.status(404).json({message: error})
     }
 }
 

@@ -27,19 +27,19 @@ export default function Home() {
     <div style={{margin: "auto",padding: "15px", maxWidth: "1000px", alignContent: "center"}}>
       <MDBRow className='mt-5'>
         {
-          tours.length==0 && location.pathname==="/" && searchQuery==="" && (
+          tours.length==0 && location.pathname==="/" && (
             <MDBTypography className='text-center mb-0' tag="h2">
               No Tour Found
             </MDBTypography>
           )
         }
-        {
+        {/* {
           tours.length==0 && searchQuery !="" && (
             <MDBTypography className='text-center mb-0 mt-5' tag="h2">
               We couldn't find any matches for "{searchQuery}"
             </MDBTypography>
           )
-        }
+        } */}
         <MDBCol>
           <MDBContainer>
             <MDBRow className='row-cols-1 row-cols-md-3 g-3'>
