@@ -6,6 +6,7 @@ import CardTour from '../Components/cardTour';
 import Spinner from '../Components/Spinner';
 import Pagination from '../Components/Pagination';
 import { useLocation } from 'react-router-dom';
+import SkeletonLoadingRendering from '../Components/SkeletonLoading';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ export default function Home() {
   },[currentPage])
 
   if(loading) {
-    return <Spinner/>
+    return <SkeletonLoadingRendering/>
   }
   return (
     <div style={{margin: "auto",padding: "15px", maxWidth: "1000px", alignContent: "center"}}>
@@ -33,7 +34,7 @@ export default function Home() {
           )
         }
         {
-          tours.length==0 && searchQuery !=="" && (
+          tours.length==0 && searchQuery !="" && (
             <MDBTypography className='text-center mb-0 mt-5' tag="h2">
               We couldn't find any matches for "{searchQuery}"
             </MDBTypography>

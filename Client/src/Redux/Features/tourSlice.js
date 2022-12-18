@@ -195,7 +195,9 @@ const tourSlice = createSlice({
         },
         [getToursBySearch.fulfilled] : (state,action)=> {
             state.loading = false;
-            state.tours = action.payload;
+            state.currentPage = 1;
+            state.tours = action.payload.data;
+            state.noOfPages = action.payload.noOfPages;
         },
         [getToursBySearch.rejected] : (state,action)=> {
             state.loading = false;
