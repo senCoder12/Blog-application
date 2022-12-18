@@ -119,7 +119,7 @@ const tourSlice = createSlice({
         },
         [createTour.fulfilled] : (state,action)=> {
             state.loading = false;
-            state.tours = action.payload;
+            // state.tours = action.payload;
         },
         [createTour.rejected] : (state,action)=> {
             state.loading = false;
