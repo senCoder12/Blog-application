@@ -15,7 +15,6 @@ import { setLogout } from '../Redux/Features/authSlice';
 import { getTours, getToursBySearch } from '../Redux/Features/tourSlice';
 import { useNavigate } from 'react-router-dom';
 import decode from "jwt-decode";
-import LoadingToRedirect from './LoadingToRedirect';
 
 function Header() {
     const { user } = useSelector(state => ({ ...state.auth }))

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Allroutes from './Components/Allroutes';
 import Header from './Components/Header';
@@ -19,7 +20,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header/>
-        {/* <ToastContainer/> */}
+        <ToastContainer/>
       </BrowserRouter>
         <Allroutes/>
     </div>

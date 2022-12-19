@@ -41,13 +41,7 @@ const TagTours = () => {
 
   return (
     <div
-      style={{
-        margin: "auto",
-        padding: "120px",
-        maxWidth: "900px",
-        alignContent: "center",
-      }}
-    >
+    className='dashboard'    >
       <h3 className="text-center">Tours with tag: {tag}</h3>
       <hr style={{ maxWidth: "570px" }} />
       {tagTours &&

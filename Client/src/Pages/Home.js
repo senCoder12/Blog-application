@@ -43,7 +43,7 @@ export default function Home() {
         <MDBCol>
           <MDBContainer>
             <MDBRow className='row-cols-1 row-cols-md-3 g-3'>
-                {tours && tours.map((item)=> <CardTour key={Math.random()} {...item} />)}
+                {tours && tours.map((item)=> <CardTour key={item._id} {...item} />)}
             </MDBRow>
           </MDBContainer>
         </MDBCol>

@@ -8,6 +8,7 @@ export const login = createAsyncThunk("auth/login", async({formValue,navigate,to
         navigate("/");
         return response.data;
     } catch (error) {
+        toast.error("Credentials error");
         return rejectWithValue(error.response.data);
     }
 })
@@ -18,6 +19,7 @@ export const register = createAsyncThunk("auth/register", async({formValue,navig
         navigate("/");
         return response.data;
     } catch (error) {
+        toast.error("User already registered"); 
         return rejectWithValue(error.response.data);
     }
 })

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { MDBCard, MDBCardBody, MDBCardFooter, MDBInput, MDBValidation, MDBBtn, MDBIcon, MDBSpinner, MDBValidationItem } from "mdb-react-ui-kit"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { login } from '../Redux/Features/authSlice';
 import GoogleLogin from 'react-google-login';
 // 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
@@ -33,7 +33,6 @@ function Login(props) {
         console.log(resp);
      }
     const googleFailure = (err) => {
-        console.log(err,"google failure");
      }
 
     return (

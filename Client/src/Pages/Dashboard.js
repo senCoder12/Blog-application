@@ -33,14 +33,7 @@ export default function Dashboard() {
     }
 
   return (
-    <div
-        style={{
-            margin: "auto",
-            padding: "120px",
-            maxWidth: "900px",
-            alingContent: "center",
-        }}
-    >
+    <div className='dashboard'>
         {
             userTours.length == 0 && (
                 <h3>No tour available with the user: {user?.result[0]?.name}</h3>
