@@ -50,7 +50,6 @@ export default function AddEditTour() {
             }else {
                 dispatch(createTour({updatedTourData,navigate,toast}))
             }
-            handleClear();
         }
     }
     const handleAddTag= (tag) => {
